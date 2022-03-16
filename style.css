@@ -44,10 +44,10 @@ h2 {
   height: calc(100% / 7);
 }
 
-.cella.bg-azzurro {
+.bg-azzurro {
   background-color: aqua;
 }
 
-.cella.bg-red {
+.bg-red {
   background-color: red;
 }

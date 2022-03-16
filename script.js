@@ -11,14 +11,18 @@ const buttonEasy = document.getElementById('easy');
 const buttonMedium = document.getElementById('medium');
 const buttonHard = document.getElementById('hard');
 
-buttonEasy.addEventListener ('click', () => createElementsInGrid(100, 'easy'), generareBombe(100), startGame(100));
+buttonEasy.addEventListener ('click', () => startGame(100, 'easy'));
 buttonMedium.addEventListener ('click', () => createElementsInGrid(81, 'medium'), generareBombe(81));
 buttonHard.addEventListener ('click', () => createElementsInGrid(49, 'hard'), generareBombe(49));
 
 const bombPosition = [];
 
+//function start game
 // creare una funzione per i livelli di difficoltà
 function createElementsInGrid(totalCell, level) {
+        const arrayBomb = generareBombe(totalCell);
+        console.log('Le bombe sono queste:');
+        console.log(arrayBomb);
     const griglia = document.getElementById('griglia');
     // resetto il contenuto della griglia
     griglia.innerHTML = '';
@@ -35,22 +39,21 @@ function createElementsInGrid(totalCell, level) {
 
             cella.id = 'cella-' + (i + 1);
     // Quando l'utente clicca su ogni cella, la cella cliccata si colora di azzurro.
-        //         cella.addEventListener('click', function() { // cell.addEventListenerer ('click', () => //qua scrivo cella.classList.toggle ('bg-azzurro'));
-        //         const isBomb = bombPosition.includes(i);
-        //         if (isBomb){
-        //                 cella.classList.add('bg-red');
-        //         }else {
-        //                 cella.classList.add('bg-azzurro');   
-        //         }
+                cella.addEventListener('click', function() { // cell.addEventListenerer ('click', () => //qua scrivo cella.classList.toggle ('bg-azzurro'));
+                console.log(i + 1);
+                // qui devo guardare se il + 1 è una bomba o no
+                const isBomb = arrayBomb.includes(i+1);
+                if (isBomb) {
+                        cella.classList.add('bg-red')
+                }else {
+                        cella.classList.add('bg-azzurro')
+                }
         
-        //  }
-        // )
+        }
+        )
         }
             
 }
-
-
-
 
 //creo array vuoto e inserisco i numeri se non presenti
 function generareBombe (max) {
@@ -76,20 +79,10 @@ function generateRandomNumber(min, max) {
 // l'utente clicca su una cella: se il numero è presente nella lista dei numeri generati 
 // abbiamo calpestato una bomba - la cella si colora di rosso e la partita termina, 
 
-function startGame (totalCell) {
-        for (let i = 1; i < totalCell; i ++) {
-                const cella = document.getElementById('cella- ' + i);
-                cella.addEventListener('click', () => {
-                        const isBomb = bombPosition.includes(i);
-                                if (isBomb){
-                                        cella.classList.add('bg-red');
-                                        }else {
-                                        cella.classList.add('bg-azzurro');   
-                                        }
-                                }
-                )
-                        
-        } 
+function startGame (totalCell, difficolta) {
+
+        createElementsInGrid(totalCell, difficolta);
+        
 }
 
 
