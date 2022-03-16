@@ -11,9 +11,9 @@ const buttonEasy = document.getElementById('easy');
 const buttonMedium = document.getElementById('medium');
 const buttonHard = document.getElementById('hard');
 
-buttonEasy.addEventListener ('click', () => createElementsInGrid(100, 'easy'));
-buttonMedium.addEventListener ('click', () => createElementsInGrid(81, 'medium'));
-buttonHard.addEventListener ('click', () => createElementsInGrid(49, 'hard'));
+buttonEasy.addEventListener ('click', () => createElementsInGrid(100, 'easy'), generareBombe(100), startGame);
+buttonMedium.addEventListener ('click', () => createElementsInGrid(81, 'medium'), generareBombe(81));
+buttonHard.addEventListener ('click', () => createElementsInGrid(49, 'hard'), generareBombe(49));
 
 
 
@@ -36,25 +36,80 @@ function createElementsInGrid(totalCell, level) {
 
     // Quando l'utente clicca su ogni cella, la cella cliccata si colora di azzurro.
             cella.addEventListener('click', function() { // cell.addEventListenerer ('click', () => //qua scrivo cella.classList.toggle ('bg-azzurro'));
-            cella.classList.toggle ('bg-azzurro');
+            cella.classList.add ('bg-azzurro');
             }
             )
+            cella.id = 'cella-' + (i + 1);
+            
+        }
+        
+      
+}
+
+//creo array vuoto
+
+function generareBombe (max) {
+        const posizione = [];
+        console.log(posizione);
+        while(posizione.length < 16) {
+                const numero = generateRandomNumber (1, max);
+                if(!posizione.includes(numero)) {
+                        posizione.push(numero)
+                }
+        }
+        return posizione;
+       
+}
+
+
+function generateRandomNumber(min, max) {
+        const range = max - min + 1;
+        return Math.floor(Math.random()*range) + min;
+}
+
+
+// l'utente clicca su una cella: se il numero è presente nella lista dei numeri generati 
+// abbiamo calpestato una bomba - la cella si colora di rosso e la partita termina, 
+
+function startGame () {
+        for (let i = 1; i < totalCell; i ++ ) {
+                const cella = document.getElementById('cell- ' + i);
+                cella.addEventListener ('click', () => {
+                        const isBomb = bombPositions.includes(i);
+                        if (isBomb){
+                                cella.classList.add('bg-red');
+                        }else {
+                                cella.classList.add('bg-azzurro');   
+                        }
+                })
         }
 }
 
 
 
+// ESERCIZIO
+/*
+Il computer deve generare 16 numeri casuali nello stesso range della difficoltà prescelta: le bombe.
+I numeri nella lista delle bombe non possono essere duplicati.
+In seguito l'utente clicca su una cella: se il numero è presente nella lista dei numeri generati - abbiamo calpestato una bomba - la cella si colora di rosso e la partita termina, altrimenti la cella cliccata si colora di azzurro e l'utente può continuare a cliccare sulle altre celle.
+La partita termina quando il giocatore clicca su una bomba o raggiunge il numero massimo possibile di numeri consentiti.
+Al termine della partita il software deve comunicare il punteggio, cioè il numero di volte che l’utente ha cliccato su una cella che non era una b.
+
+*/
+
+/* 
+Il computer deve generare 16 numeri casuali nello stesso range della difficoltà prescelta: le bombe.
+I numeri nella lista delle bombe non possono essere duplicati.
+
+- creo array vuoto
+- creo 16 numeri casuali
+- Controllo se ci sono numeri casuali all'interno dell'array, altrimenti inserisco i numeri (.push)
 
 
+In seguito l'utente clicca su una cella: se il numero è presente nella lista dei numeri generati - abbiamo calpestato una bomba - la cella si colora di rosso e la partita termina, 
+altrimenti la cella cliccata si colora di azzurro e l'utente può continuare a cliccare sulle altre celle.
 
-
-
-
-
-
-
-
-
+*/
 
 
 
