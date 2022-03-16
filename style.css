@@ -1,0 +1,49 @@
+* {
+  margin: 0px;
+  padding: 0px;
+  box-sizing: border-box;
+}
+
+body {
+  font-family: sans-serif;
+  background-color: blue;
+}
+
+h1,
+h2 {
+  color: white;
+  text-align: center;
+  padding: 10px;
+}
+
+#griglia {
+  width: 500px;
+  height: 500px;
+  margin: 50px auto;
+  display: flex;
+  flex-wrap: wrap;
+}
+
+.cella {
+  background-color: yellow;
+  text-align: center;
+}
+
+.cella.easy {
+  width: calc(100% / 10);
+  height: calc(100% / 10);
+}
+
+.cella.medium {
+  width: calc(100% / 9);
+  height: calc(100% / 9);
+}
+
+.cella.hard {
+  width: calc(100% / 7);
+  height: calc(100% / 7);
+}
+
+.cella.bg-azzurro {
+  background-color: aqua;
+}
