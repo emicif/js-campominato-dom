@@ -12,8 +12,8 @@ const buttonMedium = document.getElementById('medium');
 const buttonHard = document.getElementById('hard');
 
 buttonEasy.addEventListener ('click', () => startGame(100, 'easy'));
-buttonMedium.addEventListener ('click', () => createElementsInGrid(81, 'medium'), generareBombe(81));
-buttonHard.addEventListener ('click', () => createElementsInGrid(49, 'hard'), generareBombe(49));
+buttonMedium.addEventListener ('click', () => startGame(81, 'medium'));
+buttonHard.addEventListener ('click', () => startGame(49, 'hard'));
 
 const bombPosition = [];
 
