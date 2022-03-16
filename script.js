@@ -11,11 +11,9 @@ const buttonEasy = document.getElementById('easy');
 const buttonMedium = document.getElementById('medium');
 const buttonHard = document.getElementById('hard');
 
-buttonEasy.addEventListener ('click', () => createElementsInGrid(100, 'easy'), generareBombe(100), startGame);
+buttonEasy.addEventListener ('click', () => createElementsInGrid(100, 'easy'), generareBombe(100));
 buttonMedium.addEventListener ('click', () => createElementsInGrid(81, 'medium'), generareBombe(81));
 buttonHard.addEventListener ('click', () => createElementsInGrid(49, 'hard'), generareBombe(49));
-
-
 
 
 // creare una funzione per i livelli di difficoltà
@@ -36,15 +34,17 @@ function createElementsInGrid(totalCell, level) {
 
     // Quando l'utente clicca su ogni cella, la cella cliccata si colora di azzurro.
             cella.addEventListener('click', function() { // cell.addEventListenerer ('click', () => //qua scrivo cella.classList.toggle ('bg-azzurro'));
-            cella.classList.add ('bg-azzurro');
+            //cella.classList.add ('bg-azzurro');
+            
             }
             )
             cella.id = 'cella-' + (i + 1);
-            
         }
         
       
 }
+
+
 
 //creo array vuoto
 
@@ -71,9 +71,9 @@ function generateRandomNumber(min, max) {
 // l'utente clicca su una cella: se il numero è presente nella lista dei numeri generati 
 // abbiamo calpestato una bomba - la cella si colora di rosso e la partita termina, 
 
-function startGame () {
+function startGame (totalCell) {
         for (let i = 1; i < totalCell; i ++ ) {
-                const cella = document.getElementById('cell- ' + i);
+                const cella = document.getElementById('cella- ' + i);
                 cella.addEventListener ('click', () => {
                         const isBomb = bombPositions.includes(i);
                         if (isBomb){
@@ -82,9 +82,9 @@ function startGame () {
                                 cella.classList.add('bg-azzurro');   
                         }
                 })
-        }
+               
+        } return cella;
 }
-
 
 
 // ESERCIZIO
