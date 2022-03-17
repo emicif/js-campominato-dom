@@ -13,8 +13,7 @@ h1,
 h2 {
   color: #85133a;
   text-align: center;
-  padding: 5px;
-  margin-top: 20px;
+  margin-top: 15px;
 }
 
 h1 {
@@ -24,7 +23,7 @@ h1 {
 #griglia {
   width: 500px;
   height: 500px;
-  margin: 50px auto;
+  margin: 40px auto;
   display: flex;
   flex-wrap: wrap;
   cursor: pointer;

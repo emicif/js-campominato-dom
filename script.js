@@ -62,7 +62,8 @@ function addClickToCells(bombe){
 
                 if (gameOver) {
                         bloccoCelle ();
-                        showBombs(bombe);                          
+                        showBombs(bombe); 
+                        conteggi.innerText = punteggio;                      
                 } else {
                         punteggio++;
                         console.log(punteggio);
@@ -75,11 +76,9 @@ function addClickToCells(bombe){
                         }
                 }
             } 
-                )
+        )
 }
 }
-
-
        
 function checkClick (cella, i, arrayBomb) {
         const isBomb = arrayBomb.includes(i+1); // === true
@@ -95,7 +94,8 @@ function checkClick (cella, i, arrayBomb) {
 function showScore (points) {
         alert('Bravo! Hai fatto ' + points + ' punti!'); 
 }
-                        
+
+
 
 //creo array vuoto e inserisco i numeri se non presenti
 function generareBombe (max) {
