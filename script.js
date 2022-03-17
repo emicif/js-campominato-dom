@@ -13,7 +13,7 @@ const buttonHard = document.getElementById('hard');
 
 buttonEasy.addEventListener ('click', () => startGame(100, 'easy'));
 buttonMedium.addEventListener ('click', () => startGame(81, 'medium'));
-buttonHard.addEventListener ('click', () => startGame(5, 'hard'));
+buttonHard.addEventListener ('click', () => startGame(49, 'hard'));
 
 
 bombsToCreate = 16;
@@ -25,12 +25,13 @@ function startGame (totalCell, difficolta) {
         addClickToCells(bombPositions);
 }
 
+
 //function start game
 // creare una funzione per i livelli di difficoltà
 function createElementsInGrid(totalCell, level) {
         const arrayBomb = generareBombe(totalCell);
         console.log('Le bombe sono queste:');
-        console.log(arrayBomb);
+
     const griglia = document.getElementById('griglia');
     // resetto il contenuto della griglia
     griglia.innerHTML = '';
@@ -47,10 +48,9 @@ function createElementsInGrid(totalCell, level) {
             cella.innerText = (i + 1);
     // aggiungo una classe cella
             griglia.appendChild(cella);
+}
+}
 
-            //cella.id = 'cella-' + (i + 1);
-}
-}
 
 function addClickToCells(bombe){
         let punteggio = 0;
@@ -62,7 +62,7 @@ function addClickToCells(bombe){
 
                 if (gameOver) {
                         bloccoCelle ();
-                        showBombs(bombe);     
+                        showBombs(bombe);                          
                 } else {
                         punteggio++;
                         console.log(punteggio);
@@ -71,38 +71,31 @@ function addClickToCells(bombe){
                         if (punteggio >= notCellBombs) {
                                 bloccoCelle();
                                 showScore(punteggio);
+                                conteggi.innerText = punteggio;
                         }
                 }
-    
-            })
-        } 
-    }
+            } 
+                )
+}
+}
 
 
-                
+       
 function checkClick (cella, i, arrayBomb) {
         const isBomb = arrayBomb.includes(i+1); // === true
         if (isBomb) {
                 cella.classList.add('bg-red');
-               
         }else {   
                 cella.classList.add('bg-azzurro');             
         }      
         return isBomb; 
 }
   
-   
- 
 
- function showScore (points) {
-        alert('Bravo! Hai fatto ' + points + ' punti!');
-        griglia.innerHTML = punteggio;
+function showScore (points) {
+        alert('Bravo! Hai fatto ' + points + ' punti!'); 
 }
                         
-
-
-
-
 
 //creo array vuoto e inserisco i numeri se non presenti
 function generareBombe (max) {
@@ -111,10 +104,10 @@ function generareBombe (max) {
         while(posizione.length < bombsToCreate) {
                 const numero = generateRandomNumber (1, max);
                 if(!posizione.includes(numero)) {
-                        posizione.push(numero)
+                     posizione.push(numero)
                 }
         }
-        return posizione;   
+        return posizione;
 }
 
 
@@ -132,7 +125,7 @@ function bloccoCelle () {
 
 
 // funzione showbombs 
-function showBombs (arrayBomb) {
+function showBombs (arrayBomb){
         //recuperare le celle
         const allCells = document.querySelectorAll ('.cella');
         //faccio un ciclo per vedere dove sono presenti le bombe
@@ -143,6 +136,6 @@ function showBombs (arrayBomb) {
                         const bombCell = allCells[i];
                         // aggiungo classe bg-red a quella costante
                         bombCell.classList.add('bg-red');
-                } 
-        }        
+                }
+        }
 }
