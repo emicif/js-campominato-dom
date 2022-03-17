@@ -56,3 +56,7 @@ h2 {
 .bg-red {
   background-color: red;
 }
+
+.cella.clicked {
+  pointer-events: none;
+}

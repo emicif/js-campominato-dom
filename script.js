@@ -46,34 +46,39 @@ function createElementsInGrid(totalCell, level) {
     // Quando l'utente clicca su ogni cella, la cella cliccata si colora di azzurro.
                 cella.addEventListener('click', function() { // cell.addEventListenerer ('click', () => //qua scrivo cella.classList.toggle ('bg-azzurro'));
                 console.log(i + 1);
+                cella.classList.add('clicked')
                 // qui devo guardare se il + 1 è una bomba o no
                 const isBomb = arrayBomb.includes(i+1); // === true
                 if (isBomb) {
                         cella.classList.add('bg-red');
                         bloccoCelle ();
                         showBombs (arrayBomb);
+                     
                 }else {
                         cella.classList.add('bg-azzurro');
                 }
-
-                return isBomb;
-        }
+                return isBomb; 
+        }     
         )
+  }
+}
+
+function point(punteggio){
+        punteggio ++;
+        const noCellaBombs = totalCell - arrayBomb.length;
+        if (punteggio >= noCellaBombs) {
+                bloccoCelle();
+                showScore(punteggio);
         }
-            
 }
 
+                               
 
 
-let punteggio = 0;
 
 
-punteggio ++;
-const noCellaBombs = totalCell - arrayBomb.length;
-if (punteggio >= noCellaBombs) {
-        bloccoCelle();
-        showScore(punteggio);
-}
+
+
 
 
 //creo array vuoto e inserisco i numeri se non presenti
@@ -116,9 +121,10 @@ function showBombs (arrayBomb) {
                         // aggiungo classe bg-red a quella costante
                         bombCell.classList.add('bg-red');
                 } 
-                }        
-        }       
-}
+        }        
+}       
+
+
 
 function showScore (points) {
         alert('Bravo! Hai fatto ' + points + ' punti!');
