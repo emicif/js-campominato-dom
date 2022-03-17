@@ -29,6 +29,7 @@ function createElementsInGrid(totalCell, level) {
     const griglia = document.getElementById('griglia');
     // resetto il contenuto della griglia
     griglia.innerHTML = '';
+    griglia.classList.remove('game-over');
     
     //inizio il ciclo per individuare le colonne e le righe e inserirle all'interno della griglia
         for (let i = 0; i < totalCell; i ++ ){
