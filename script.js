@@ -63,6 +63,19 @@ function createElementsInGrid(totalCell, level) {
             
 }
 
+
+
+let punteggio = 0;
+
+
+punteggio ++;
+const noCellaBombs = totalCell - arrayBomb.length;
+if (punteggio >= noCellaBombs) {
+        bloccoCelle();
+        showScore(punteggio);
+}
+
+
 //creo array vuoto e inserisco i numeri se non presenti
 function generareBombe (max) {
         const posizione = [];
@@ -102,8 +115,13 @@ function showBombs (arrayBomb) {
                         const bombCell = allCells[i];
                         // aggiungo classe bg-red a quella costante
                         bombCell.classList.add('bg-red');
-                }            
+                } 
+                }        
         }       
+}
+
+function showScore (points) {
+        alert('Bravo! Hai fatto ' + points + ' punti!');
 }
 
 
@@ -114,6 +132,4 @@ I numeri nella lista delle bombe non possono essere duplicati.
 In seguito l'utente clicca su una cella: se il numero è presente nella lista dei numeri generati - abbiamo calpestato una bomba - la cella si colora di rosso e la partita termina, altrimenti la cella cliccata si colora di azzurro e l'utente può continuare a cliccare sulle altre celle.
 La partita termina quando il giocatore clicca su una bomba o raggiunge il numero massimo possibile di numeri consentiti.
 Al termine della partita il software deve comunicare il punteggio, cioè il numero di volte che l’utente ha cliccato su una cella che non era una b.
-
 */
-
