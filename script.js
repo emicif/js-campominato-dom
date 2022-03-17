@@ -96,6 +96,7 @@ function checkClick (cella, i, arrayBomb) {
 
  function showScore (points) {
         alert('Bravo! Hai fatto ' + points + ' punti!');
+        griglia.innerHTML = punteggio;
 }
                         
 

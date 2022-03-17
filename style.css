@@ -6,7 +6,7 @@
 
 body {
   font-family: sans-serif;
-  background-color: blue;
+  background-color: rgb(0, 0, 160);
 }
 
 h1,
@@ -14,6 +14,7 @@ h2 {
   color: white;
   text-align: center;
   padding: 10px;
+  margin-top: 40px;
 }
 
 #griglia {
@@ -29,9 +30,20 @@ h2 {
   pointer-events: none;
 }
 
-.cella {
-  background-color: yellow;
+button {
   text-align: center;
+  padding: 10px;
+  border-radius: 30%;
+  text-decoration: none;
+  margin: 10px auto;
+  align-items: center;
+}
+
+
+.cella {
+  background-color: #fddcb3;
+  text-align: center;
+  border: 1px solid red;
 }
 
 .cella.easy {
@@ -59,4 +71,14 @@ h2 {
 
 .cella.clicked {
   pointer-events: none;
+}
+
+
+button:hover {
+ background: yellow; } 
+a.button7:active { 
+  background: rgb(33,147,90); 
+  box-shadow: 0 3px rgb(33,147,90) inset; 
+} 
+ 
 }
