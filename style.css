@@ -24,6 +24,10 @@ h2 {
   flex-wrap: wrap;
 }
 
+#griglia.game-over {
+  pointer-events: none;
+}
+
 .cella {
   background-color: yellow;
   text-align: center;
