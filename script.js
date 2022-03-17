@@ -51,6 +51,7 @@ function createElementsInGrid(totalCell, level) {
                 if (isBomb) {
                         cella.classList.add('bg-red');
                         bloccoCelle ();
+                        showBombs (arrayBomb);
                 }else {
                         cella.classList.add('bg-azzurro');
                 }
@@ -58,7 +59,6 @@ function createElementsInGrid(totalCell, level) {
                 return isBomb;
         }
         )
-
         }
             
 }
@@ -90,13 +90,21 @@ function bloccoCelle () {
 }
 
 
-// controllo se l'utente ha cliccato una bomba
-// se si ritorno true
-// se no ritorno false
-
-
-
-
+// funzione showbombs 
+function showBombs (arrayBomb) {
+        //recuperare le celle
+        const allCells = document.querySelectorAll ('.cella');
+        //faccio un ciclo per vedere dove sono presenti le bombe
+        for (let i = 1; i < allCells.length; i ++){
+                //se arrayBomb include i+1
+                if (arrayBomb.includes (i+1)){
+                        //recupero la bomba in quella posizione con una costante
+                        const bombCell = allCells[i];
+                        // aggiungo classe bg-red a quella costante
+                        bombCell.classList.add('bg-red');
+                }            
+        }       
+}
 
 
 // ESERCIZIO
@@ -109,17 +117,3 @@ Al termine della partita il software deve comunicare il punteggio, cioè il nume
 
 */
 
-/* 
-Il computer deve generare 16 numeri casuali nello stesso range della difficoltà prescelta: le bombe.
-I numeri nella lista delle bombe non possono essere duplicati.
-
-- creo array vuoto
-- creo 16 numeri casuali
-- Controllo se ci sono numeri casuali all'interno dell'array, altrimenti inserisco i numeri (.push)
-
-
-In seguito l'utente clicca su una cella: se il numero è presente nella lista dei numeri generati - abbiamo calpestato una bomba - la cella si colora di rosso e la partita termina, 
-altrimenti la cella cliccata si colora di azzurro e l'utente può continuare a cliccare sulle altre celle.
-La partita termina quando il giocatore clicca su una bomba o raggiunge il numero massimo possibile di numeri consentiti.
-Al termine della partita il software deve comunicare il punteggio, cioè il numero di volte che l’utente ha cliccato su una cella che non era una b.
-*/
