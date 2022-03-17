@@ -13,11 +13,16 @@ const buttonHard = document.getElementById('hard');
 
 buttonEasy.addEventListener ('click', () => startGame(100, 'easy'));
 buttonMedium.addEventListener ('click', () => startGame(81, 'medium'));
-buttonHard.addEventListener ('click', () => startGame(49, 'hard'));
+buttonHard.addEventListener ('click', () => startGame(5, 'hard'));
 
+
+bombsToCreate = 16;
 
 function startGame (totalCell, difficolta) {
         createElementsInGrid(totalCell, difficolta);
+
+        const bombPositions = generareBombe(totalCell);
+        addClickToCells(bombPositions);
 }
 
 //function start game
@@ -37,45 +42,62 @@ function createElementsInGrid(totalCell, level) {
             const cella = document.createElement('div');
             cella.className = 'cella';
             cella.classList.add(level);
+           
     // inserire un numero da 1 a 100 in ogni cella
             cella.innerText = (i + 1);
     // aggiungo una classe cella
             griglia.appendChild(cella);
 
-            cella.id = 'cella-' + (i + 1);
-    // Quando l'utente clicca su ogni cella, la cella cliccata si colora di azzurro.
-                cella.addEventListener('click', function() { // cell.addEventListenerer ('click', () => //qua scrivo cella.classList.toggle ('bg-azzurro'));
-                console.log(i + 1);
-                cella.classList.add('clicked')
-                // qui devo guardare se il + 1 è una bomba o no
-                const isBomb = arrayBomb.includes(i+1); // === true
-                if (isBomb) {
-                        cella.classList.add('bg-red');
+            //cella.id = 'cella-' + (i + 1);
+}
+}
+
+function addClickToCells(bombe){
+        let punteggio = 0;
+        const allCells = document.querySelectorAll ('.cella');
+        for (let i = 0; i < allCells.length; i ++) {
+                const cell = allCells[i];
+                cell.addEventListener('click', ()=> {
+                const gameOver = checkClick (cell, i, bombe);
+
+                if (gameOver) {
                         bloccoCelle ();
-                        showBombs (arrayBomb);
-                     
-                }else {
-                        cella.classList.add('bg-azzurro');
+                        showBombs(bombe);     
+                } else {
+                        punteggio++;
+                        console.log(punteggio);
+                        cell.classList.add('clicked');
+                        const notCellBombs = allCells.length - bombsToCreate;
+                        if (punteggio >= notCellBombs) {
+                                bloccoCelle();
+                                showScore(punteggio);
+                        }
                 }
-                return isBomb; 
-        }     
-        )
-  }
+    
+            })
+        } 
+    }
+
+
+                
+function checkClick (cella, i, arrayBomb) {
+        const isBomb = arrayBomb.includes(i+1); // === true
+        if (isBomb) {
+                cella.classList.add('bg-red');
+               
+        }else {   
+                cella.classList.add('bg-azzurro');             
+        }      
+        return isBomb; 
 }
+  
+   
+ 
 
-function point(punteggio){
-        punteggio ++;
-        const noCellaBombs = totalCell - arrayBomb.length;
-        if (punteggio >= noCellaBombs) {
-                bloccoCelle();
-                showScore(punteggio);
-        }
+ function showScore (points) {
+        alert('Bravo! Hai fatto ' + points + ' punti!');
 }
-
-                               
-
-
-
+                        
 
 
 
@@ -85,7 +107,7 @@ function point(punteggio){
 function generareBombe (max) {
         const posizione = [];
         console.log(posizione);
-        while(posizione.length < 16) {
+        while(posizione.length < bombsToCreate) {
                 const numero = generateRandomNumber (1, max);
                 if(!posizione.includes(numero)) {
                         posizione.push(numero)
@@ -122,20 +144,4 @@ function showBombs (arrayBomb) {
                         bombCell.classList.add('bg-red');
                 } 
         }        
-}       
-
-
-
-function showScore (points) {
-        alert('Bravo! Hai fatto ' + points + ' punti!');
 }
-
-
-// ESERCIZIO
-/*
-Il computer deve generare 16 numeri casuali nello stesso range della difficoltà prescelta: le bombe.
-I numeri nella lista delle bombe non possono essere duplicati.
-In seguito l'utente clicca su una cella: se il numero è presente nella lista dei numeri generati - abbiamo calpestato una bomba - la cella si colora di rosso e la partita termina, altrimenti la cella cliccata si colora di azzurro e l'utente può continuare a cliccare sulle altre celle.
-La partita termina quando il giocatore clicca su una bomba o raggiunge il numero massimo possibile di numeri consentiti.
-Al termine della partita il software deve comunicare il punteggio, cioè il numero di volte che l’utente ha cliccato su una cella che non era una b.
-*/
